@@ -93,8 +93,10 @@ class Options():
         parser.add_argument("--model_path", type=str, required=True,
                             help="Path to the model to test")
         parser.add_argument("--metrics", type=str, help="Metric to use for testing", default="ccc")  # TODO maybe do this via config file per task?
-        parser.add_argument("--prediction_file", type=str, default="predictions.csv",
-                            help="The file to write predictions in csv format") # TODO do for different tasks?
+        parser.add_argument("--prediction_file", type=str, 
+                            default="predictions.csv",
+                            help="The file to write predictions in csv format") 
+                            # TODO do for different tasks?
 
     
     def _add_parsers(self) -> argparse.ArgumentParser():

@@ -132,7 +132,7 @@ class Metric():
         self.classification_metrics = {"UAR": UAR}
         self.regression_metrics = {
             "Spearmann": spearmann_correlation_coefficient,
-            "Pearson": pearson_correlation_coefficient,
+            # "Pearson": pearson_correlation_coefficient,
             "CCC": np_CCC}
             # use np_CCC implementation to get back a numpy array. 
             # Or use CCC and cast

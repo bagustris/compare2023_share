@@ -61,8 +61,8 @@ class VocalDataModule(LightningDataModule):
         ds = VocalDataset(phase_params)
 
         shuffle = phase_params.is_training
-        # drop_last = phase_params.is_training    # only drop last batch during train
-        drop_last = True   # to avoid errors with single batch
+        drop_last = phase_params.is_training    # only drop last batch during train
+        # drop_last = True   # to avoid errors with single batch
 
         return DataLoader(ds, phase_params.batch_size, shuffle, num_workers=8, drop_last=drop_last)
 

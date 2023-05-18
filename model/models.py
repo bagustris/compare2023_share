@@ -215,7 +215,6 @@ class StackedModule(nn.Module):
         # High
         high_pred = self.high_encoder(input_feat)
   
-
         return {"high": high_pred}
 
 
@@ -331,9 +330,7 @@ def model_factory(model_params:Params) -> AbstractModel:
     :returns: A subclass of Abstractmodel
     """
 
-    if model_params.model_name == "basemtl":
-        return BaseMultitaskModel(model_params)
-    elif model_params.model_name == "stacked":
+    if model_params.model_name == "stacked":
         return StackModel(model_params)
     elif model_params.model_name == "nn":
         return NN_Model(model_params)

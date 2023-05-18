@@ -2,9 +2,9 @@
 Trainer Class collecting components
 """
 
-from asyncio import tasks
+# from asyncio import tasks
 import torch
-from torch import nn
+# from torch import nn
 from torch.utils.tensorboard import SummaryWriter
 import numpy as np
 import pandas as pd
@@ -17,11 +17,11 @@ from copy import deepcopy
 from typing import Dict, Tuple
 
 from dataset import EMOTIONS, TYPES
-import dataset
+# import dataset
 from dataset.vocal_data import VocalDataModule
 from model.models import model_factory, count_all_parameters, count_trainable_parameters
 from optimizer import get_optimizer, get_scheduler
-from losses import Criterion, criterion_factory
+from losses import criterion_factory
 from metrics import Metric
 
 class Trainer():
@@ -63,7 +63,7 @@ class Trainer():
         print("\n * * * Creating model * * * \n") 
 
         self.model = model_factory(self.model_args)
-        if params.model.pretrained_path:    # if available, load pretrained weights
+        if params.model.pretrained_path: # if available, load pretrained weight
             if "state_dict" in ckpt.keys(): 
                 self.model.load_state_dict(ckpt["state_dict"])
         # move model to GPU
@@ -387,30 +387,30 @@ class Trainer():
                 data = np.argmax(data, axis=1)
 
             col_names = []
-            if task == "voc_type":
-                col_names.append("Voc_Type")
-            else:
-                if task_info[task]["type"] == "classification":
-                    col_names.extend(task_info[task]["categories"])
-                else:
-                    col_names.extend(task_info[task]["dimensions"])
+            # if task == "voc_type":
+            #     col_names.append("Voc_Type")
+            # else:
+            #     if task_info[task]["type"] == "classification":
+            #         col_names.extend(task_info[task]["categories"])
+            #     else:
+            col_names.extend(task_info[task]["dimensions"])
 
             pred_df = pd.DataFrame(data=data, columns=col_names)
 
             # change order for culture to match labels file
-            if task == "culture_emotion":
-                surprise_cols = ["China_Surprise","United States_Surprise","South Africa_Surprise","Venezuela_Surprise"]
-                reordered_cols = pred_df.columns.drop(surprise_cols).to_list() + surprise_cols
-                pred_df = pred_df[reordered_cols]
+            # if task == "culture_emotion":
+            #     surprise_cols = ["China_Surprise","United States_Surprise","South Africa_Surprise","Venezuela_Surprise"]
+            #     reordered_cols = pred_df.columns.drop(surprise_cols).to_list() + surprise_cols
+            #     pred_df = pred_df[reordered_cols]
 
-            # vocal type predictions need to be mapped back to class names
-            if task == "voc_type":
-                pred_df["Voc_Type"] = pred_df["Voc_Type"].map(
-                    dataset.INVERSE_MAP_VOCAL_TYPES)
+            # # vocal type predictions need to be mapped back to class names
+            # if task == "voc_type":
+            #     pred_df["Voc_Type"] = pred_df["Voc_Type"].map(
+            #         dataset.INVERSE_MAP_VOCAL_TYPES)
 
             # add the fids
-            pred_df.insert(loc=0, column="File_ID",
-                           value=predictions["File_ID"])
+            pred_df.insert(loc=0, column="filename",
+                           value=predictions["filename"])
 
             print("Created a dataframe with {} rows".format(len(pred_df)))
             # store the dataframe
@@ -470,7 +470,8 @@ class Trainer():
                 labels = {}
 
                 # build a list of file ids with brackets around them
-                file_ids.extend(["[{}]".format(f) for f in batch["fid"]])
+                # remove the brackets when saving to csv
+                file_ids.extend(["{}".format(f) for f in batch["fid"]])
 
                 if partition.lower() != "test":
 
@@ -533,7 +534,7 @@ class Trainer():
             targets = {}
 
         # add file ids
-        predictions["File_ID"] = file_ids
+        predictions["filename"] = file_ids
 
         return score, metrics, predictions, targets
 
