@@ -42,7 +42,7 @@ class Options():
         #parser.add_argument("--augment_pitch", type=int, default=200, help="Pitch shift augmentation")
         #parser.add_argument("--augment_time_warp", type=float, default=1.0, help="Time warping (default 1.0)")
         # optimiser
-        parser.add_argument("--optimizer", type=str, default="AdamW", choices=["sgd", "rmsprop", "adam", "adamw"], help="Type of optimizer to use for training (defaults to AdamW)")
+        parser.add_argument("--optimizer", type=str, default="AdamW", choices=["sgd", "rmsprop", "adam", "adamw", "adam8bit", "adamw8bit"], help="Type of optimizer to use for training (defaults to AdamW)")
         parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate (default 1e-3)")
         parser.add_argument("--fe_lr", type=float, default=1e-5, help="Learning rate for feature extractor (default 1e-5)")
         # training

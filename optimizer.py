@@ -8,6 +8,7 @@ import torch.nn as nn
 from end2you.utils import Params
 from model.models import AbstractModel
 from losses import Criterion
+import bitsandbytes as bnb
 
 def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion) -> torch.optim.Optimizer:
 
@@ -45,6 +46,22 @@ def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion)
             lr=train_params.lr,
             weight_decay=train_params.weight_decay
         )
+    elif opt_name == "adam8bit":
+        optimizer = bnb.optim.Adam8bit(
+            #.parameters(),
+            opt_parameters,
+            lr=train_params.lr,
+            weight_decay=train_params.weight_decay
+        )
+
+    elif opt_name == "adamw8bit":
+        optimizer = bnb.optim.AdamW8bit(
+            #.parameters(),
+            opt_parameters,
+            lr=train_params.lr,
+            weight_decay=train_params.weight_decay
+        )
+
     else:
         optimizer = torch.optim.RMSprop(
             #model.parameters(),
