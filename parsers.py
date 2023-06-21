@@ -128,7 +128,7 @@ class Options():
         # Data
         parser.add_argument("--batch_size", type=int, default=8, help="Batch size (default 8)")
         parser.add_argument("--sr", type=int, default=16000, help="Audio sample rate in Hz. (defaults to 16000)")
-        parser.add_argument("--window_size", type=float, default=2.5, help="Length of an audio clip in seconds (default 2.5)")
+        parser.add_argument("--window_size", type=float, default=5.5, help="Length of an audio clip in seconds (default 5.5)")
 
         #SpecAugment
         parser.add_argument("--mask_time_prob", type=float, default=0.05, help="SpecAugment timestep mask probability (default 0.05)")
