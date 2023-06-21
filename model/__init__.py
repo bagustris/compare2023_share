@@ -27,7 +27,7 @@ def get_feature_dim(params:Params)-> int:
     
     if any(feature in params.feature_extractor for feature in ["wav2vec2-large",
            "wavlm-large", "unispeech-sat-large", "hubert-large-ll60k", 
-           "wav2vec2-xls-r-300m"]):
+           "wav2vec2-xls-r-300m", "audeering"]):
         if params.features == "attention":
             return 1024
 

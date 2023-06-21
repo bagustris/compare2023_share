@@ -64,6 +64,15 @@ def load_ssl_model(params:Params) -> nn.Module:
             mask_feature_prob=mask_feature_prob,
             mask_feature_length=mask_feature_length
         )
+    
+    # audeering model
+    elif ssl_model == 'audeering':
+        model = transformers.Wav2Vec2Model.from_pretrained(f"audeering/wav2vec2-large-robust-12-ft-emotion-msp-dim",
+            mask_time_prob=mask_time_prob,
+            mask_time_length=mask_time_length,
+            mask_feature_prob=mask_feature_prob,
+            mask_feature_length=mask_feature_length
+        )
     else:
         raise NotImplementedError
 

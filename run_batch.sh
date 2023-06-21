@@ -2,7 +2,7 @@
 
 # This script runs the batch job for the set of features
 
-features="wav2vec2-base wavlm-base-plus unispeech-sat-base-plus hubert-base-ls960 wav2vec2-large wavlm-large unispeech-sat-large hubert-large-ll60k wav2vec2-xls-r-300m"
+features="wav2vec2-base wavlm-base-plus unispeech-sat-base-plus hubert-base-ls960 wav2vec2-large wavlm-large unispeech-sat-large hubert-large-ll60k wav2vec2-xls-r-300m audeering"
 
 for feature in $features; do
     echo "Running batch job for $feature"
