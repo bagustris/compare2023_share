@@ -53,7 +53,7 @@ def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion)
             lr=train_params.lr,
             weight_decay=train_params.weight_decay,
             betas=(0.9, 0.995),
-            min_8bit_size=16384
+            min_8bit_size=32768
         )
 
     elif opt_name == "adamw8bit":
@@ -63,7 +63,7 @@ def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion)
             lr=train_params.lr,
             weight_decay=train_params.weight_decay,
             betas=(0.9, 0.995),
-            min_8bit_size=16384
+            min_8bit_size=32768
         )
 
     elif opt_name == 'rmsprop':
