@@ -51,7 +51,9 @@ def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion)
             #.parameters(),
             opt_parameters,
             lr=train_params.lr,
-            weight_decay=train_params.weight_decay
+            weight_decay=train_params.weight_decay,
+            betas=(0.9, 0.995),
+            min_8bit_size=16384
         )
 
     elif opt_name == "adamw8bit":
@@ -59,10 +61,12 @@ def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion)
             #.parameters(),
             opt_parameters,
             lr=train_params.lr,
-            weight_decay=train_params.weight_decay
+            weight_decay=train_params.weight_decay,
+            betas=(0.9, 0.995),
+            min_8bit_size=16384
         )
 
-    else:
+    elif opt_name == 'rmsprop':
         optimizer = torch.optim.RMSprop(
             #model.parameters(),
             opt_parameters,
@@ -70,6 +74,9 @@ def get_optimizer(train_params:Params, model:AbstractModel, criterion:Criterion)
             alpha=0.95,
             eps=1e-7
         )
+
+    else:
+        raise NotImplementedError
 
     return optimizer
 
