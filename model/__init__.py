@@ -5,12 +5,11 @@ from end2you.utils import Params
 Model module
 """
 
-WAV2VEC2_BASE_PATH = "/data/eihw-gpu5/karasvin/models/pretrained/facebook/wav2vec2-base/Model"
+# WAV2VEC2_BASE_PATH = "/data/eihw-gpu5/karasvin/models/pretrained/facebook/wav2vec2-base/Model"
 
 def get_feature_dim(params:Params)-> int:
     """
     Helper to calculate the number of input features from the feature extractor
-    Currently only for wav2vec2-base
     """
 
     # if any["wav2vec2", "wavlm-base-plus", "unispeech-sat-plus",
