@@ -6,7 +6,8 @@ import torch.nn.functional as F
 import transformers
 from end2you.utils import Params
 
-from model import WAV2VEC2_BASE_PATH, get_feature_dim
+# from model import WAV2VEC2_BASE_PATH, get_feature_dim
+from model import get_feature_dim
 import dataset
 
 """
