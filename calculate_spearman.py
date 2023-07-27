@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # script to calculate spearmann correlation from experiment results
-# example
-# python calculate_spearmann.py results/2021-05-25_14-05-01/
+# example: 
+# python calculate_spearman.py results/2021-05-25_14-05-01/
 import sys
 import pandas as pd
 import numpy as np
