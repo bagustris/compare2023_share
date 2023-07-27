@@ -27,7 +27,7 @@ $ CUDA_VISIBLE_DEVICES=1 ./train.py -n "window 5.5" --window_size 6 train --trai
 See `run_batch.sh` for running in batch mode.
 
 # Validation score
-Use the `calculate_spearman.py` command to calculate the (Spearman) score of results
+Use the `calculate_spearman.py` command to calculate the (Spearman) score of results (change the path of the true labels with your own).
 
 ```
 $ ./calculate_spearman.py result/2023-06-22-14-50-14/
